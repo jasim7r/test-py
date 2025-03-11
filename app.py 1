@@ -1,0 +1,21 @@
+from flask import Flask
+import os
+import datetime
+import subprocess
+
+app = Flask(_name_)
+
+@app.route('/htop')  # Ensure this matches the URL you are accessing
+def htop():
+    ist_time = datetime.datetime.utcnow() + datetime.timedelta(hours=5, minutes=30)
+    top_output = subprocess.getoutput("top -b -n 1")
+    
+    response = f"""
+    <h1>Name: Jassim Najeebullah</h1>
+    <h2>Server Time (IST): {ist_time.strftime('%Y-%m-%d %H:%M:%S')}</h2>
+    <pre>{top_output}</pre>
+    """
+    return response
+
+if _name_ == "_main_":
+    app.run(host="0.0.0.0", port=5000)
